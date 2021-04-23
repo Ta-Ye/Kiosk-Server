@@ -1,6 +1,5 @@
 package taye.kiosk.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +15,17 @@ public class MenuService {
 	private MenuRepository menuRepo;
 	
 	// 인기 메뉴 3개
-	public List<Menu> getFavoriteMenuList() throws SQLException{
+	public List<Menu> getFavoriteMenuList(){
 		return menuRepo.findThreeOrder();
 	}
 	
 	// 매장별 인기 메뉴 3개
-	public List<Menu> getFavoriteMenuListByStore(Long storeNum) throws SQLException{
+	public List<Menu> getFavoriteMenuListByStore(Long storeNum){
 		return menuRepo.findThreeOrderByStoreNum(storeNum);
 	}
 	
 	// 연령별 인기 메뉴 3개
-	public List<Menu> getFavoriteMenuListByAge(String age) throws SQLException{
+	public List<Menu> getFavoriteMenuListByAge(String age){
 		return menuRepo.findThreeOrderByAge(age);
 	}
 }

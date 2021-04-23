@@ -6,4 +6,5 @@ import taye.kiosk.domain.Store;
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
 	
+	Store findByStoreKey();
 }
