@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,6 +19,7 @@ import taye.kiosk.service.StoreService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private final StoreService storeService;
+	private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	public SecurityConfig(StoreService storeService) {
 		this.storeService = storeService;
@@ -25,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	PasswordEncoder passwordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+		return passwordEncoder;
 	}
 	
 	@Override
@@ -48,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .failureUrl("/login/error")
                 )
                 .logout(logout->logout.logoutSuccessUrl("/"))
-                .exceptionHandling(e->e.accessDeniedPage("/denied"))
+                .exceptionHandling(e->e.accessDeniedPage("/error"))
                 ;
     }
 

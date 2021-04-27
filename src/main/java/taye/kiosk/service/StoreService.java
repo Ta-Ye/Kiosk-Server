@@ -9,12 +9,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import taye.kiosk.dao.StoreRepository;
 import taye.kiosk.domain.Store;
 import taye.kiosk.dto.StoreDTO.StoreDetail;
 import taye.kiosk.dto.StoreDTO.StoreName;
+import taye.kiosk.dto.StoreDTO.StoreRegi;
 
 @Service
 @Transactional
@@ -22,6 +24,8 @@ public class StoreService implements UserDetailsService{
 	
 	@Autowired
 	StoreRepository storeRepo;
+	
+	private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
 	public StoreDetail loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,8 +42,9 @@ public class StoreService implements UserDetailsService{
 		return storeRepo.findStoreByStoreName(storeName);
 	}
 	
-	public Store save(Store store) {
-		return storeRepo.save(store);
+	public Store save(StoreRegi store) {
+		store.setPassword(passwordEncoder.encode(store.getPassword()));
+		return storeRepo.save(StoreRegi.toEntity(store));
 	}
 	
 	public List<StoreName> getStoreNameList(){

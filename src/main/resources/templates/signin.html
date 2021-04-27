@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+	<div class="container center-contents">
+		<div class="row">
+			<form class="form-signin" method="post" th:action="@{/signin}">
+				<h1 class="h3 mb-3 font-weight-normal">지점 가입</h1>
+				<label for="id" class="sr-only"> 지점키 </label>
+				<input
+					type="text" id="id" name="id" class="form-control"
+					placeholder="지점명을 입력해주세요." required>
+				<label for="password" class="sr-only"> 지점키 </label>
+				<input type="password" id="password"
+					name="password" class="form-control" placeholder="지점키를 입력해주세요."
+					required>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">가입</button>
+				<div class="error-message" th:if="${signinError}">
+					<span> 이미 있는 지점입니다. </span>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script th:src="@{/js/bootstrap.js}" />
+</body>
+</html>

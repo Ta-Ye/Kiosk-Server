@@ -8,8 +8,6 @@
 <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-
-
 	<div class="container center-contents">
 		<div class="row">
 			<form class="form-signin" method="post" th:action="@{/login}">
@@ -27,9 +25,11 @@
 				<div class="error-message" th:if="${loginError}">
 					<span> 키값이 올바르지 않습니다. </span>
 				</div>
+				<a href="/signin" class="mt-3">지점 가입</a>
 			</form>
-
+			
 		</div>
+		
 	</div>
 
 	<script th:src="@{/js/bootstrap.js}" />

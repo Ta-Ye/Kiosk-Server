@@ -68,4 +68,16 @@ public class StoreDTO {
 			return new StoreName(store.getStoreName());
 		}
 	}
+		
+	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
+	public static class StoreRegi {		
+		private String id;
+		private String password;
+		
+		public static Store toEntity(StoreRegi store) {
+			return Store.builder().storeName(store.getId()).storeKey(store.getPassword()).build();
+		}
+	}
 }
