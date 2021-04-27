@@ -1,7 +1,6 @@
 package taye.kiosk.domain;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 
 @Entity(name = " ORDERING")
 public class Order {
@@ -42,8 +43,8 @@ public class Order {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "STORE_NUM")
 	private Store store;
-
+	
 	@ManyToMany
 	@JoinTable(name = "ORDER_MENU")
-	private List<Menu> menus = new ArrayList<>();
+	private List<Menu> menus;
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+
+
+	<div class="container center-contents">
+		<div class="row">
+			<form class="form-signin" method="post" th:action="@{/login}">
+				<h1 class="h3 mb-3 font-weight-normal">KIOSK</h1>
+				<select name="username" class="form-control">
+					<option th:each="StoreName:${storeList}" th:object="${StoreName}" th:value="*{storeName}">
+						<span th:text="*{storeName}"></span>
+					</option>
+				</select> <label for="password" class="sr-only"> 지점키 </label> <input
+					type="password" id="password" name="password" class="form-control"
+					placeholder="지점키를 입력해주세요." required>
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">
+					로그인</button>
+				<div class="error-message" th:if="${loginError}">
+					<span> 키값이 올바르지 않습니다. </span>
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+	<script th:src="@{/js/bootstrap.js}" />
+</body>
+</html>
