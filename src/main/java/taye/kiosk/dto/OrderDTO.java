@@ -17,6 +17,5 @@ public class OrderDTO {
 		
 		private List<Long> order;
 		private String age;
-		private String key;
 	}
 }

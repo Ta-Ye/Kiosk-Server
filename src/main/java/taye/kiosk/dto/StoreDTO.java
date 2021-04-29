@@ -5,6 +5,8 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +29,7 @@ public class StoreDTO {
 	public static class StoreDetail implements UserDetails{
 		
 		private String storeName;
+		@JsonIgnore
 		private String storeKey;
 		private Set<StoreAuthority> authorities; 
 		private boolean enabled;

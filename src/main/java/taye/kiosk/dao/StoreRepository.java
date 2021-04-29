@@ -8,7 +8,9 @@ import taye.kiosk.domain.Store;
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
 	
-	Optional<Store> findStoreByStoreName(String storeName);
+	Optional<Store> findByStoreName(String storeName);
 	
-	Store findStoreByStoreKey(String storeKey);
+	Optional<Store> findStoreByStoreKey(String storeKey);
+	
+	Optional<Store> findByStoreNameAndStoreKey(String storeName, String storeKey);
 }
