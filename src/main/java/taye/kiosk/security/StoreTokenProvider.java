@@ -20,8 +20,6 @@ public class StoreTokenProvider implements AuthenticationProvider{
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         if(authentication instanceof UsernamePasswordAuthenticationToken){
             UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
-            System.out.println(token.getName());
-            System.out.println(storeService.findStore(token.getName()).orElse(null));
             if (storeService.findStore(token.getName()).isEmpty()) {
             	return null;
             }

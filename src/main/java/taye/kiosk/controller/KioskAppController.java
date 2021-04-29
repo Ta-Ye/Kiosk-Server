@@ -52,4 +52,9 @@ public class KioskAppController {
 		orderService.insertOrder(menuService.getMenuListById(orderRegi.getOrder()),
 				storeService.findStoreById(store.getStoreNum()).get(), orderRegi.getAge());
 	}
+	
+	@GetMapping("authcheck")
+	public boolean authCheck() {
+		return true;
+	}
 }

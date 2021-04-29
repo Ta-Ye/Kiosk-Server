@@ -3,16 +3,14 @@ package taye.kiosk.dto;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 public class OrderDTO {
 	
 	@NoArgsConstructor
 	@AllArgsConstructor
-	@Getter
-	@Setter
+	@Data
 	public static class OrderRegi {
 		
 		private List<Long> order;
