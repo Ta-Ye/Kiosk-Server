@@ -47,9 +47,4 @@ public class LoginController {
 		model.addAttribute("signinError", true);
 		return "signin";
 	}
-	
-	@GetMapping("/error")
-	public String error() {
-		return "Error";
-	}
 }
