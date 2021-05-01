@@ -1,4 +1,4 @@
-package taye.kiosk.controller;
+package taye.kiosk.controller.backoffice;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import taye.kiosk.service.StoreService;
 
 @Controller
 @RequiredArgsConstructor
-public class BackOfficeController {
+public class LoginController {
 	
 	private final StoreService storeService;
 	

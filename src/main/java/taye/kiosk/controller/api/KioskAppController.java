@@ -1,4 +1,4 @@
-package taye.kiosk.controller;
+package taye.kiosk.controller.api;
 
 import java.util.List;
 
@@ -49,8 +49,10 @@ public class KioskAppController {
 
 	@PostMapping("order/insert")
 	public void insertOrder(@AuthenticationPrincipal Store store, @RequestBody OrderRegi orderRegi) {
-		orderService.insertOrder(menuService.getMenuListById(orderRegi.getOrder()),
-				storeService.findStoreById(store.getStoreNum()).get(), orderRegi.getAge());
+		orderService.insertOrder(
+				menuService.getMenuListById(orderRegi.getOrder()),
+				storeService.findStoreById(store.getStoreNum()).get(),
+				orderRegi.getAge());
 	}
 	
 	@GetMapping("authcheck")
