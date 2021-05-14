@@ -11,6 +11,7 @@ import taye.kiosk.dao.OrderRepository;
 import taye.kiosk.domain.Menu;
 import taye.kiosk.domain.Order;
 import taye.kiosk.domain.Store;
+import taye.kiosk.dto.OrderDTO.OrderDetail;
 
 @Service
 public class OrderService {
@@ -63,9 +64,13 @@ public class OrderService {
 		return months;
 	}
 	
-	public List<Order> getOrdersByYear(Store store) {
+	public List<OrderDetail> getOrdersByYear(Store store) {
 		
+		List<OrderDetail> details = new ArrayList<>();
 		LocalDate date = LocalDate.now();
-		return getSortedOrders(store, LocalDate.of(date.getYear(), 1, 1));
+		for (Order order : getSortedOrders(store, LocalDate.of(date.getYear(), 1, 1))){
+			details.add(OrderDetail.of(order));
+		}
+		return details;
 	}
 }
