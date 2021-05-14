@@ -2,6 +2,7 @@ package taye.kiosk.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,17 @@ public class MenuService {
 			menus.add(menuRepo.findById(o).get());
 		});
 		return menus;
+	}
+	
+	public List<Menu> getAllMenuList(){
+		return menuRepo.findAll();
+	}
+	
+	public Optional<Menu> findMenuById(Menu menu) {
+		return menuRepo.findById(menu.getMenuNum());
+	}
+	
+	public Menu insertMenu(Menu menu) {
+		return menuRepo.save(menu);
 	}
 }
