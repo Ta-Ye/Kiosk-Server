@@ -34,12 +34,16 @@
     <script>
     
 	    var ctx = document.getElementById('countChart').getContext('2d');
+	    var cp = "[[${sales}]]"
+	    console.log(cp);
+	    var cpx = JSON.parse(cp);
 	    var myChart = new Chart(ctx, {
 	        type: 'bar',
 	        data: {
+	            labels: [[${menuNames}]],
 	            datasets: [{
 	                label: '매출 금액',
-	                data: [[${salespermonth}]],
+	                data: cpx.young,
 	                backgroundColor: 'rgba(54, 162, 235, 0.2)'
 	                ,
 	                borderColor: 'rgba(54, 162, 235, 1)'
@@ -58,7 +62,5 @@
 				}
 			}
 	    });
-    
-    
     </script>
 </html>
