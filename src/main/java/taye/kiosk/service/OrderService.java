@@ -22,11 +22,16 @@ public class OrderService {
 		return orderRepo.save(Order.builder().age(age).orderDate(LocalDate.now()).store(store).menus(menus).build());
 	}
 	
-	public List<int[]> getSalesPerDay(List<Order> orders) {
+	private List<Order> getSortedOrders(Store store, LocalDate date) {
+		List<Order> orders = orderRepo.findMonthlyOrders(store.getStoreNum(), date);
+		orders.sort((a,b) -> a.getOrderDate().compareTo(b.getOrderDate()));
+		return orders;
+	}
+	
+	public List<int[]> getOrdersPerDay(Store store) {
 		
-		orders.sort((a,b) -> {
-			return a.getOrderDate().compareTo(b.getOrderDate());
-		 });
+		LocalDate date = LocalDate.now();
+		List<Order> orders = getSortedOrders(store, LocalDate.of(date.getYear(), date.getMonth(), 1));
 		
 		int[] days = new int[31];
 		orders.forEach(o -> days[o.getOrderDate().getDayOfMonth()-1]++);
@@ -34,17 +39,33 @@ public class OrderService {
 		List<int[]> ans = new ArrayList<>();
 		for (int i=0 ; i<31; i++) {
 			if (days[i]>0) {
-				int[] ck = {i+1, days[i]};
+				int[] ck = {i+1, days[i]}; 
 				ans.add(ck);
 			}
 		}
 		return ans;
 	}
 	
-	public List<int[]> getOrderPerDay(Store store) {
+	public int[] getSalesPerMonth(Store store) {
 		
 		LocalDate date = LocalDate.now();
-		LocalDate firstDate = LocalDate.of(date.getYear(), date.getMonth(), 1);
-		return getSalesPerDay(orderRepo.findMonthlyOrders(store.getStoreNum(), firstDate));
+		List<Order> orders = getSortedOrders(store, LocalDate.of(date.getYear(), 1, 1));
+		
+		int[] months = new int[12];
+		orders.forEach(o -> {
+			int sum = 0;
+			for (Menu menu : o.getMenus()) {
+				sum+=menu.getPrice();
+			}
+			months[o.getOrderDate().getMonthValue()-1]+=sum;
+		});
+		
+		return months;
+	}
+	
+	public List<Order> getOrdersByYear(Store store) {
+		
+		LocalDate date = LocalDate.now();
+		return getSortedOrders(store, LocalDate.of(date.getYear(), 1, 1));
 	}
 }

@@ -27,8 +27,12 @@ public class LoginController {
 		StoreDetail storeDetail = (StoreDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Store store = storeService.findStore(storeDetail.getStoreName()).orElseThrow(() -> new UsernameNotFoundException(storeDetail.getStoreName()));
 		
-		// 일별 매출건수 추이
-		model.addAttribute("orderperday", orderService.getOrderPerDay(store));
+		// 일별 주문건수 추이
+		model.addAttribute("orderperday", orderService.getOrdersPerDay(store));
+		// 월별 매출액 추이
+		model.addAttribute("salespermonth", orderService.getSalesPerMonth(store));
+		// 올해 주문정보
+		model.addAttribute("orders", orderService.getOrdersByYear(store));
 		
 		return "index";
 	}
