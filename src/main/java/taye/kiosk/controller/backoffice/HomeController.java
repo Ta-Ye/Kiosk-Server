@@ -10,14 +10,4 @@ public class HomeController {
 	public String charts() {
 		return "charts";
 	}
-	
-	@GetMapping("/tables")
-	public String tables() {
-		return "tables";
-	}
-	
-	@GetMapping("/layout-static")
-	public String layouts() {
-		return "layout-static";
-	}
 }

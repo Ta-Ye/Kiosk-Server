@@ -42,6 +42,15 @@ public class OrderDTO {
 			}
 			return OrderDetail.builder().age(order.getAge()).date(order.getOrderDate()).menus(menus.substring(0, menus.length()-2)).price(price).build(); 
 		}
+	}
+	
+	@NoArgsConstructor
+	@AllArgsConstructor
+	@Data
+	@Builder
+	public static class OrderSale {
 		
+		private int x;
+		private int y;
 	}
 }

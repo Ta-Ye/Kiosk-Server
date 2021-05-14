@@ -29,8 +29,7 @@ class KioskServerApplicationTests {
 
     TestRestTemplate testClient = new TestRestTemplate("1234", "1234");
 
-    @DisplayName("1. choi:1 로 로그인해서 학생 리스트를 내려받는다.")
-    @Test
+    //@Test
     void test_1(){
         ResponseEntity<List<Menu>> resp = testClient.exchange("http://localhost:" + port + "/api/menu/favorite",
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Menu>>() {

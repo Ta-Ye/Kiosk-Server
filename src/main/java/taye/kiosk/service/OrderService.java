@@ -12,6 +12,7 @@ import taye.kiosk.domain.Menu;
 import taye.kiosk.domain.Order;
 import taye.kiosk.domain.Store;
 import taye.kiosk.dto.OrderDTO.OrderDetail;
+import taye.kiosk.dto.OrderDTO.OrderSale;
 
 @Service
 public class OrderService {
@@ -29,7 +30,7 @@ public class OrderService {
 		return orders;
 	}
 	
-	public List<int[]> getOrdersPerDay(Store store) {
+	public List<OrderSale> getOrdersPerDay(Store store) {
 		
 		LocalDate date = LocalDate.now();
 		List<Order> orders = getSortedOrders(store, LocalDate.of(date.getYear(), date.getMonth(), 1));
@@ -37,11 +38,10 @@ public class OrderService {
 		int[] days = new int[31];
 		orders.forEach(o -> days[o.getOrderDate().getDayOfMonth()-1]++);
 		
-		List<int[]> ans = new ArrayList<>();
+		List<OrderSale> ans = new ArrayList<>();
 		for (int i=0 ; i<31; i++) {
 			if (days[i]>0) {
-				int[] ck = {i+1, days[i]}; 
-				ans.add(ck);
+				ans.add(new OrderSale(i+1, days[i]));
 			}
 		}
 		return ans;
