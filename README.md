@@ -25,7 +25,7 @@
 ## Database Structure
 <hr>
 
-![structure](readme_img/ERD.png)
+![structure](readme_img/ERD.PNG)
 
 <br>
 
