@@ -64,4 +64,33 @@ public class LoginController {
 		model.addAttribute("signinError", true);
 		return "signin";
 	}
+	
+	@GetMapping("/setting")
+	public String setting(Model model) {
+		StoreDetail storeDetail = (StoreDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("id", storeDetail.getStoreName());
+		return "setting";
+	}
+	
+	@PostMapping("/setting")
+	public String setting(StoreRegi storeRegi) {
+		StoreDetail storeDetail = (StoreDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Store store = storeService.findStore(storeDetail.getStoreName()).orElseThrow(()-> new UsernameNotFoundException("error"));
+		storeService.updateStore(store, storeRegi);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/delete")
+	public String deletePage() {
+		return "delete";
+	}
+	
+	@PostMapping("/delete")
+	public String delete() {
+		StoreDetail storeDetail = (StoreDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Store store = storeService.findStore(storeDetail.getStoreName()).orElseThrow(()-> new UsernameNotFoundException("error"));
+		storeService.deleteStore(store);
+		
+		return "redirect:/";
+	}
 }

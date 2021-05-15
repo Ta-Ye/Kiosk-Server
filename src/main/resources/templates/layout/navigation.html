@@ -1,3 +1,7 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark"
 	th:fragment="top_navi">
 	<a class="navbar-brand" href="/">TAYE KIOSK</a>
@@ -25,14 +29,17 @@
 		aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 		<div class="dropdown-menu dropdown-menu-right"
 			aria-labelledby="navbarDropdown">
-			<a class="dropdown-item" href="#!">Settings</a>
+			<a class="dropdown-item" href="/setting">Settings</a>
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item">
+			<a class="dropdown-item" href="/delete">탈퇴</a>
+			<div class="dropdown-divider"></div>
+			<div class="dropdown-item">
 				<form th:action="@{/logout}" method="post">
 					<button type="submit" style="border: 0; background: none">Logout</button>
 				</form>
-			</a>
-		</div></li>
+			</div>
+		</div>
+	</li>
 </nav>
 
 <div id="layoutSidenav_nav" th:fragment="left_navi">
@@ -84,3 +91,5 @@
         </div>
     </div>
 </footer>
+
+</html>

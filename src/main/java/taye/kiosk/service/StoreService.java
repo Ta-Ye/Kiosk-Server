@@ -46,4 +46,14 @@ public class StoreService implements UserDetailsService{
 	public Optional<Store> findStoreById(Long id){
 		return storeRepo.findById(id);
 	}
+	
+	public void updateStore(Store store, StoreRegi storeRegi) {
+		store.setStoreName(storeRegi.getId());
+		store.setStoreKey(StoreRegi.toEntity(storeRegi).getStoreKey());
+		storeRepo.save(store);
+	}
+	
+	public void deleteStore(Store store) {
+		storeRepo.delete(store);
+	}
 }

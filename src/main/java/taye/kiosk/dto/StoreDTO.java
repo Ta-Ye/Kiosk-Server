@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -75,12 +76,12 @@ public class StoreDTO {
 	@Data
 	@NoArgsConstructor
 	@AllArgsConstructor
-	public static class StoreRegi {		
+	public static class StoreRegi {
 		private String id;
 		private String password;
 		
 		public static Store toEntity(StoreRegi store) {
-			return Store.builder().storeName(store.getId()).storeKey(store.getPassword()).build();
+			return Store.builder().storeName(store.getId()).storeKey(new BCryptPasswordEncoder().encode(store.getPassword())).build();
 		}
 	}
 }

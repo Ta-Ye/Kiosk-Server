@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+	<div class="container center-contents">
+		<div class="row">
+			<form class="form-signin" method="post" th:action="@{/delete}">
+				<h1 class="h3 mb-3 font-weight-normal">KIOSK</h1>
+				<h3 class="h5 mb-3 font-weight-normal"> 되돌릴 수 없습니다.</h3>
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">
+					탈퇴</button>
+			</form>
+			
+		</div>
+		
+	</div>
+
+	<script th:src="@{/js/bootstrap.js}" />
+</body>
+</html>
