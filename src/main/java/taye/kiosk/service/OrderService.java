@@ -125,17 +125,17 @@ public class OrderService {
 		return menuNames;
 	}
 	
-	public Map<String, List<Integer>> getOrdersPriceByAgeNum(Map<String, Map<String, Integer>> maps, List<String> menuNames) {
+	public List<List<Integer>> getOrdersPriceByAgeNum(Map<String, Map<String, Integer>> maps, List<String> menuNames) {
 		
-		Map<String, List<Integer>> mapNums = new HashMap<>();
+		List<List<Integer>> mapNums = new ArrayList<>();
 
-		mapNums.put("young", new ArrayList<>());
-		mapNums.put("middle", new ArrayList<>());
-		mapNums.put("old", new ArrayList<>());
+		mapNums.add(new ArrayList<>());
+		mapNums.add(new ArrayList<>());
+		mapNums.add(new ArrayList<>());
 		for (String name : menuNames) {
-			mapNums.get("young").add(maps.get("young").get(name));
-			mapNums.get("middle").add(maps.get("middle").get(name));
-			mapNums.get("old").add(maps.get("old").get(name));
+			mapNums.get(0).add(maps.get("young").get(name));
+			mapNums.get(1).add(maps.get("middle").get(name));
+			mapNums.get(2).add(maps.get("old").get(name));
 		}
 		return mapNums;
 	}

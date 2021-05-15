@@ -33,23 +33,46 @@
     </body>
     <script>
     
-	    var ctx = document.getElementById('countChart').getContext('2d');
-	    var cp = "[[${sales}]]"
-	    console.log(cp);
-	    var cpx = JSON.parse(cp);
+	    var counts = [[${counts}]];
+	    var prices = [[${prices}]];
+	    var cpp = "[[${menuNames}]]".slice(1,-1).split(", ")
+	    
+	    console.log(counts)
+	    
+	    var ctx = document.getElementById('countChart').getContext('2d')
 	    var myChart = new Chart(ctx, {
 	        type: 'bar',
 	        data: {
-	            labels: [[${menuNames}]],
-	            datasets: [{
-	                label: '매출 금액',
-	                data: cpx.young,
-	                backgroundColor: 'rgba(54, 162, 235, 0.2)'
-	                ,
-	                borderColor: 'rgba(54, 162, 235, 1)'
-	                ,
-	                borderWidth: 1
-	            }]
+	            labels: cpp,
+	            datasets: [
+	            	{
+		                label: 'young',
+		                data: counts[0],
+		                backgroundColor: 'rgba(54, 162, 235, 0.2)'
+		                ,
+		                borderColor: 'rgba(54, 162, 235, 1)'
+		                ,
+		                borderWidth: 1
+	            	},
+	            	{
+		                label: 'middle',
+		                data: counts[1],
+		                backgroundColor: 'rgba(255, 99, 132, 0.2)'
+		                ,
+		                borderColor: 'rgba(255, 99, 132, 1)'
+		                ,
+		                borderWidth: 1
+	            	},
+	            	{
+		                label: 'old',
+		                data: counts[2],
+		                backgroundColor: 'rgba(255, 206, 86, 0.2)'
+		                ,
+		                borderColor: 'rgba(255, 206, 86, 1)'
+		                ,
+		                borderWidth: 1
+	            	}
+	            ]
 	        },
 	        options: {
 				responsive: true,
@@ -62,5 +85,53 @@
 				}
 			}
 	    });
+	    
+	    var ctx = document.getElementById('salesChart').getContext('2d')
+	    var myChart = new Chart(ctx, {
+	        type: 'bar',
+	        data: {
+	            labels: cpp,
+	            datasets: [
+	            	{
+		                label: 'young',
+		                data: prices[0],
+		                backgroundColor: 'rgba(54, 162, 235, 0.2)'
+		                ,
+		                borderColor: 'rgba(54, 162, 235, 1)'
+		                ,
+		                borderWidth: 1
+	            	},
+	            	{
+		                label: 'middle',
+		                data: prices[1],
+		                backgroundColor: 'rgba(255, 99, 132, 0.2)'
+		                ,
+		                borderColor: 'rgba(255, 99, 132, 1)'
+		                ,
+		                borderWidth: 1
+	            	},
+	            	{
+		                label: 'old',
+		                data: prices[2],
+		                backgroundColor: 'rgba(255, 206, 86, 0.2)'
+		                ,
+		                borderColor: 'rgba(255, 206, 86, 1)'
+		                ,
+		                borderWidth: 1
+	            	}
+	            ]
+	        },
+	        options: {
+				responsive: true,
+				scales: {
+					yAxes: [{
+						ticks: {
+							min: 0
+						}
+					}]
+				}
+			}
+	    });
+	    
     </script>
 </html>

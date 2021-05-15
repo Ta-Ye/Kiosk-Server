@@ -33,7 +33,7 @@ public class HomeController {
 		List<String> menuNames = orderService.getMenuNames(menus);
 		
 		model.addAttribute("menuNames", menuNames);
-		model.addAttribute("sales", orderService.getOrdersPriceByAgeNum(orderService.getOrdersByAge(store,menus), menuNames));
+		model.addAttribute("counts", orderService.getOrdersPriceByAgeNum(orderService.getOrdersByAge(store,menus), menuNames));
 		model.addAttribute("prices", orderService.getOrdersPriceByAgeNum(orderService.getOrderPriceByAge(store,menus), menuNames));
 		return "charts";
 	}
