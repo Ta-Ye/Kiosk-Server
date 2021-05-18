@@ -25,7 +25,7 @@ import lombok.Setter;
 @Setter
 @Builder
 
-@Entity(name = " ORDERING")
+@Entity(name = "ordering")
 public class Order {
 
 	@Id
