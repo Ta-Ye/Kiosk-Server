@@ -16,7 +16,7 @@
 
 | 대시보드 | 메뉴 관리 |
 |---|---|
-| ![dashboard](readme_img/Dashboard.png)| ![dashboard](readme_img/메뉴관리.png) |
+| ![dashboard](readme_img/Dashboard.PNG) | ![dashboard](readme_img/메뉴관리.PNG) |
 | 연령별 데이터 | 지점 정보 관리 |
 | ![dashboard](readme_img/연령별Data.png) | ![dashboard](readme_img/CRUD.png) |
 
@@ -25,7 +25,7 @@
 ## Database Structure
 <hr>
 
-![structure](readme_img/ERD.png)
+![structure](readme_img/ERD.PNG)
 
 <br>
 
